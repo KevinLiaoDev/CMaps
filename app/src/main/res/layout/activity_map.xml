@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_detail_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="详细地址"
+                android:textColor="#000000"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/et_detail_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:maxLines="2"
+                android:minLines="2"
+                android:hint="详细地址提示"
+                android:textSize="16sp"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
+                android:textColor="#000000"
+                android:textColorHint="#000000"/>
+            <Button
+                android:id="@+id/btn_detail_address_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:clickable="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_detail_address"
+        android:gravity="center">
+        <org.osmdroid.views.MapView
+            android:id="@+id/map_osm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:enabled="true">
+        </org.osmdroid.views.MapView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_map_marker"
+                android:layout_marginBottom="40dp"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_location_osm_google_tile_map"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/icon_googlemap_location_blue"
+            android:scaleType="centerCrop"
+            android:background="@color/transparent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="40dp"/>
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ib_location_zoomin"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_map_zoomin"/>
+
+            <ImageButton
+                android:id="@+id/ib_location_zoomout"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_map_zoomout"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
