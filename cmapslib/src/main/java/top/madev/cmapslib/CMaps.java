@@ -118,6 +118,10 @@ public class CMaps {
         }
     }
 
+    public void setMapLocationUrl(String url){
+        GetLocation.getInstance().setNetworkLocationUrl(url);
+    }
+
     public void mapLocation(final Application context, final Activity activity){
         GetLocation.getInstance().setMultiLocationListener(new GetLocation.OnMultiLocationListener() {
             @Override
@@ -166,6 +170,10 @@ public class CMaps {
         if (mMapView!=null && mMapView.getController()!=null){
             mMapView.getController().animateTo(new GeoPoint(latitude,longitude));
         }
+    }
+
+    public void onStop(){
+        GetLocation.getInstance().onStop();
     }
 
 }

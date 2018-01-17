@@ -39,6 +39,12 @@ public class MapActivity extends AppCompatActivity {
         }
         mMapView = findViewById(R.id.map_osm);
         CMaps.getInstance().setmMapView(mMapView);
+        /**
+         * 如果你想在中国大陆内使用谷歌网络定位服务，你可以选择翻墙或者反向代理以下接口
+         * https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY
+         * 并通过以下方法设置你的接口域名
+         */
+        //CMaps.getInstance().setMapLocationUrl("https://googleapis.xxxxxx.com/");
         init();
     }
 
@@ -99,7 +105,7 @@ public class MapActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        GetLocation.getInstance().onStop();
+        CMaps.getInstance().onStop();
     }
 
 }
