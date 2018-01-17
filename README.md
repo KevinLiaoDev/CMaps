@@ -74,7 +74,7 @@ CMapsTools.queryAddress(InputAddressActivity.this, address, new CMapsTools.OnLoc
 });
 ```
 ### 释放资源
-无论哪种的定位方式，在activity生命周期stop中一定要释放资源并且停止定位，以防资源浪费和异常奔溃
+在activity生命周期stop中一定要释放资源并且停止定位，以防资源浪费和异常奔溃
 ```java
 @Override
 protected void onStop() {
