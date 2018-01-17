@@ -35,3 +35,54 @@
     android:name="GOOGLE_LOCATION_API_KEY"
     android:value="YOUR_API_KEY" />
 ```
+
+## 使用过程
+### 初始化
+```java
+CMaps.getInstance().setmMapView(mMapView);
+```
+### 切换定位域名（非必须）
+```java
+CMaps.getInstance().setMapLocationUrl("https://googleapis.xxxxxx.com/");
+```
+* 虽然该方案最主要的目标用户是在境外的国行手机，那么访问谷歌接口理应没有太大问题，但是不排除调试或者部分人需要在国内使用，特意封装了修改定位域名的方法。
+  - 如果你想在中国境内使用本方案中的网络定位，可在境外服务器反向代理如下接口：https://www.googleapis.com/geolocation/v1/geolocate?key=YOUR_API_KEY
+  - 也可根据使用场景接入国内定位服务，在境外时使用CLocation，在境内时使用国内定位服务
+### 设置瓦片地图源
+```java
+//可以自行判断能否使用google.com。true使用google.cn，false使用goole.com
+//google.com源地图更丰富，在墙外网络通畅的情况下建议使用google.com
+//CMaps.getInstance().selectTileSource(false);
+//根据ip选择地图源，这样墙内墙外均可以使用
+CMaps.getInstance().selectTileSource();
+```
+### 进行多重定位
+```java
+CMaps.getInstance().mapLocation(getApplication(), this);
+```
+### 地理位置编码查询
+```java
+CMapsTools.queryAddress(InputAddressActivity.this, address, new CMapsTools.OnLocation() {
+    @Override
+    public void location(double lat, double lon) {
+        progressDialog.dismiss();
+        Intent intent = new Intent(InputAddressActivity.this, MapActivity.class);
+        intent.putExtra(MapActivity.CURRENT_LATITUDE, lat);
+        intent.putExtra(MapActivity.CURRENT_LONGITUDE, lon);
+        startActivity(intent);
+    }
+});
+```
+### 释放资源
+无论哪种的定位方式，在activity生命周期stop中一定要释放资源并且停止定位，以防资源浪费和异常奔溃
+```java
+@Override
+protected void onStop() {
+    super.onStop();
+    CMaps.getInstance().onStop();
+}
+```
+
+## 关于
+* 有任何建议或者使用中遇到问题都可以给我发邮件
+* Email：kevinliaodev@163.com
